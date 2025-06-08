@@ -42,10 +42,10 @@ public class Cockroach implements Beetle, Runnable {
     @Override
     public void race(int dist) {
         for (int i = 0; i < dist; i++) {
-            //System.out.printf("Cockroach name : %d, iteration %d.\n", name, i);
+            System.out.printf("Cockroach name : %d, iteration %d.\n", name, i);
             try {
                 int temp = randomSleep();
-               // System.out.printf("Name: %d | Sleep time now: %d\n", name, temp);
+                System.out.printf("Name: %d | Sleep time now: %d\n", name, temp);
                 Thread.sleep(temp);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
