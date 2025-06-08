@@ -18,7 +18,7 @@ import java.util.Scanner;
  * “Congratulations to tarakan #X (winner)” where X - is the tarakan-winner number
  */
 
-public class TarakansRaceAppl {
+public class CockroachesRaceAppl {
     public static void main(String[] args) {
         // Ask for game configuration
         Scanner sc = new Scanner(System.in);
