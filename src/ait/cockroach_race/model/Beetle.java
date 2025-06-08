@@ -1,4 +1,4 @@
-package ait.cockroach_races.model;
+package ait.cockroach_race.model;
 
 public interface Beetle {
 

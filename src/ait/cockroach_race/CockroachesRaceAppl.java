@@ -10,12 +10,10 @@
  * “Congratulations to tarakan #X (winner)” where X - is the tarakan-winner number
  */
 
-package ait.cockroach_races;
+package ait.cockroach_race;
 
-import ait.cockroach_races.model.Cockroach;
-import ait.cockroach_races.utils.Utils;
-
-import java.util.Scanner;
+import ait.cockroach_race.model.Cockroach;
+import ait.cockroach_race.utils.Utils;
 
 /**
  * @author Vasilii Serebrovskii

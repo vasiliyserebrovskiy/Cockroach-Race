@@ -1,4 +1,4 @@
-package ait.cockroach_races.utils;
+package ait.cockroach_race.utils;
 
 import java.util.Scanner;
 
