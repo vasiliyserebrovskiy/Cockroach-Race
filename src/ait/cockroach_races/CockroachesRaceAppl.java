@@ -4,6 +4,8 @@ package ait.cockroach_races;
  * @version 1.0 (08.06.2025)
  */
 
+import ait.cockroach_races.utils.Utils;
+
 import java.util.Scanner;
 
 /**
@@ -22,11 +24,49 @@ public class CockroachesRaceAppl {
     public static void main(String[] args) {
         // Ask for game configuration
         Scanner sc = new Scanner(System.in);
-        System.out.println("Please, enter number of cockroaches (a positive integer): ");
-        String inputCount = sc.nextLine();
+        int numberOfCockroaches = 0;
+        int raceDistance = 0;
+        int distance;
 
-        System.out.println("Please enter the race distance (a positive integer): ");
-        String inputDistance = sc.nextLine();
+        boolean isTrue = true;
+
+        while (isTrue) {
+            System.out.println("Please, enter number of cockroaches (a positive integer): ");
+            String inputCount = sc.nextLine().trim();
+//            System.out.println("temp: " + inputCount);
+            if (isInteger(inputCount)) {
+                numberOfCockroaches = Integer.parseInt(inputCount);
+                isTrue = false;
+            } else {
+                System.out.println("Entered value is not a number!");
+                System.out.println("Please try again");
+            }
+        }
+
+        isTrue = true;
+        while (isTrue) {
+            System.out.println("Please enter the race distance (a positive integer): ");
+            String inputDistance = sc.nextLine().trim();
+            if (isInteger(inputDistance)) {
+                raceDistance = Integer.parseInt(inputDistance);
+                isTrue = false;
+            } else {
+                System.out.println("Entered value is not a number!");
+                System.out.println("Please try again");
+            }
+        }
+
+
+
+        // Temp
+        System.out.println("Game parameters:");
+        System.out.println("Number of cockroaches: " + numberOfCockroaches);
+        System.out.println("Race distance: " + raceDistance);
 
     }
+
+    public static boolean isInteger(String str) {
+        return str.matches("\\d+"); // Только положительные целые числа
+    }
+
 }
