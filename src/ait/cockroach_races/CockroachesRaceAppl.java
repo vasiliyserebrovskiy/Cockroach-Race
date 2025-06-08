@@ -23,23 +23,41 @@ import java.util.Scanner;
  */
 
 public class CockroachesRaceAppl {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         int numberOfCockroaches = Utils.readInputParameter("Please, enter number of cockroaches (a positive integer): ");
         int raceDistance = Utils.readInputParameter("Please enter the race distance (a positive integer): ");
 
-        // TODO: This is a temp output
-        System.out.println("Game parameters:");
-        System.out.println("Number of cockroaches: " + numberOfCockroaches);
-        System.out.println("Race distance: " + raceDistance);
+        System.out.println("====================================");
+        System.out.println("---       GAME PARAMETERS        ---");
+        System.out.println("     Number of cockroaches: " + numberOfCockroaches);
+        System.out.println("             Race distance: " + raceDistance);
+        System.out.println("====================================");
+        System.out.println();
 
-        // Test run without threads
-        Cockroach firstCockroach = new Cockroach(13);
-        firstCockroach.race(raceDistance);
+        Cockroach.setDistance(raceDistance);
 
-        // TODO: Start race with Threads
+        Runnable[] cockroaches = new Runnable[numberOfCockroaches];
+        Thread[] threadsOfCockroaches = new Thread[cockroaches.length];
 
-        System.out.println("The winner name is: " + Cockroach.getWinnerName());
+        for (int i = 0; i < cockroaches.length; i++) {
+            cockroaches[i] = new Cockroach(i);
+            threadsOfCockroaches[i] = new Thread(cockroaches[i]);
+        }
+
+        for (int i = 0; i < threadsOfCockroaches.length; i++) {
+            threadsOfCockroaches[i].start();
+        }
+
+        for (int i = 0; i < threadsOfCockroaches.length; i++) {
+            threadsOfCockroaches[i].join();
+        }
+
+        if (Cockroach.getWinnerName() != -1) {
+            System.out.printf("Congratulations to cockroach #%d (winner).\n", Cockroach.getWinnerName());
+        } else {
+            System.out.println("Something went wrong, please contact the developers.");
+        }
 
     }
 

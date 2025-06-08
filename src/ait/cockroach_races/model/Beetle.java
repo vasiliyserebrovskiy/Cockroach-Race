@@ -5,5 +5,4 @@ public interface Beetle {
     void race(int dist);
     int randomSleep();
 
-
 }

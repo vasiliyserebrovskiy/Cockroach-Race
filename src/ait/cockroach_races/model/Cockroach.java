@@ -6,8 +6,8 @@ package ait.cockroach_races.model;
  */
 public class Cockroach implements Beetle, Runnable {
     private static int winnerName = -1;
-    private static int distance;
-    private int name;
+    private static int distance =-1;
+    private final int name;
 
 
     public Cockroach(int name) {
@@ -18,16 +18,16 @@ public class Cockroach implements Beetle, Runnable {
         return winnerName;
     }
 
-    public static void setWinnerName(int winnerName) {
+    public static void setWinnerName(int name) {
         if (Cockroach.winnerName == -1) {
-            Cockroach.winnerName = winnerName;
+            Cockroach.winnerName = name;
         } else {
-            System.out.println("The winner has already been determined.");
+            System.out.println("The winner has already been determined. Cockroach with name: " + name + " loose this race.");
         }
     }
 
     public static void setDistance(int distance) {
-        if (Cockroach.distance == 0 && distance > 0) {
+        if (Cockroach.distance == -1 && distance > 0) {
             Cockroach.distance = distance;
         } else {
             System.out.println("Distance is already set or invalid.");
@@ -42,10 +42,10 @@ public class Cockroach implements Beetle, Runnable {
     @Override
     public void race(int dist) {
         for (int i = 0; i < dist; i++) {
-            System.out.printf("Cockroach name : %d, iteration %d.", name, i);
+            //System.out.printf("Cockroach name : %d, iteration %d.\n", name, i);
             try {
                 int temp = randomSleep();
-                System.out.println("Sleep time now: " + temp);
+               // System.out.printf("Name: %d | Sleep time now: %d\n", name, temp);
                 Thread.sleep(temp);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
@@ -53,12 +53,15 @@ public class Cockroach implements Beetle, Runnable {
 
         }
 
-        if (winnerName == -1) setWinnerName(name);
-
+        setWinnerName(name);
     }
 
     @Override
     public void run() {
+        if (distance == -1 ) {
+            System.out.println("Error: Race distance didn't set!");
+            return;
+        }
         race(distance);
     }
 }

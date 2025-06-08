@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Utils {
     /**
      * Method to check if a string is a number.
-     * @param str
+     * @param str - еhe value of the string entered by the user.
      * @return boolean
      */
     public static boolean isInteger(String str) {
